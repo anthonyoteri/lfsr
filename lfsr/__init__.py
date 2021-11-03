@@ -1,3 +1,5 @@
-from .random import LFSR
+"""Linear Feedback Shift Register"""
 
-__all__ = "LFSR"
+from .random import LFSR  # noqa
+
+__all__ = ["LFSR"]

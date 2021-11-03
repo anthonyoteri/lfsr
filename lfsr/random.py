@@ -3,7 +3,7 @@ Linear Feedback Shift Register based Random Number Generator
 """
 
 import time
-from typing import List
+from typing import List, Optional
 
 
 class LFSR:
@@ -15,13 +15,13 @@ class LFSR:
         next bit in sequence.
     """
 
-    def __init__(self, seed: int = None, tap: int = 8):
+    def __init__(self, seed: Optional[int] = None, tap: int = 8):
         self._seed = int(time.time()) if seed is None else seed
         self._tap = self._seed.bit_length() // 2 if tap is None else tap
 
         self._value = self._seed
 
-    def __next__(self):
+    def __next__(self) -> int:
         """
         Generate the next bit in sequence.
         """
@@ -60,10 +60,10 @@ class LFSR:
         Return a shuffled list of unique integers.
 
         :param length: The number of elements to return
-        :param bit_length: The maximum number of bits to return per element, e.g.
-            a bit_length of 5 would mean values < 32.
-        :raises ValueError: if the requested length would require more elements
-            then would be possible with the given bit_length.
+        :param bit_length: The maximum number of bits to return per element,
+            e.g. a bit_length of 5 would mean values < 32.
+        :raises ValueError: if the requested length would require more
+            elements then would be possible with the given bit_length.
 
         :returns a shuffled list of integer values.
         """
@@ -73,7 +73,7 @@ class LFSR:
                 f"Cannot generate more than {1 << bit_length} values"
             )
 
-        values = []
+        values: List[int] = []
         while len(values) < length:
             value = self.rand_int(bit_length=bit_length)
 

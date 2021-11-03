@@ -17,7 +17,7 @@ pipeline {
         stage('Check') {
             steps {
                 sh "pip3 install -r requirements.txt"
-                sh "flake8"
+                sh "flake8 lfsr"
                 sh "black --check lfsr"
                 sh "isort --check lfsr"
                 sh "mypy lfsr"

@@ -1,5 +1,3 @@
-import pytest
-
 from lfsr import LFSR
 
 
