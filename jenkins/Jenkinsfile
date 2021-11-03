@@ -1,0 +1,36 @@
+#!groovy
+
+pipeline {
+    agent {
+        kubernetes {
+            yamlFile 'jenkins/podTemplate.yaml'
+            defaultContainer 'python'
+        }
+    }
+
+    options {
+        ansiColor('xterm')
+    }
+
+    stages {
+
+        stage('Check') {
+            steps {
+                sh "pip3 install -r requirements.txt"
+                sh "flake8"
+                sh "black --check lfsr"
+                sh "isort --check lfsr"
+                sh "mypy lfsr"
+                sh "pylint lfsr"
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh "pip3 install -r requirements.txt"
+                sh "pip3 install ."
+                sh "pytest"
+            }
+        }
+    }
+}
