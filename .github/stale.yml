@@ -1,0 +1,13 @@
+daysUntilStale: 60
+daysUntilClose: 7
+exemptLabels:
+  - pinned
+  - security
+staleLabel: stale
+markComment: >
+  This pull request/issue has been automatically marked as stale because it has not
+  had any recent activity.  It will be closed automatically in 7 days if no further
+  activity occurs.
+unmarkComment: >
+  This pull request/issue is no longer marked as stale.
+closeComment: false
