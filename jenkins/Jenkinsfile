@@ -20,7 +20,7 @@ pipeline {
                 sh "flake8 lfsr"
                 sh "black --check lfsr"
                 sh "isort --check lfsr"
-                sh "mypy lfsr"
+                // sh "mypy lfsr"
                 sh "pylint lfsr"
             }
         }
